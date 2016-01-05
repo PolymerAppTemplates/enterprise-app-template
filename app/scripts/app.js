@@ -31,11 +31,11 @@
 
   // Scroll page to top and expand header
   app.scrollPageToTop = function() {
-    app.$.appContext.$.headerPanelMain.scrollToTop(true);
+    //app.$.appContext.$.headerPanelMain.scrollToTop(true);
   };
 
   app.closeDrawer = function() {
-    app.$.appContext.$.paperDrawerPanel.closeDrawer();
+    //app.$.appContext.$.paperDrawerPanel.closeDrawer();
   };
 
 })(document);
