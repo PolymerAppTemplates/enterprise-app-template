@@ -35,19 +35,6 @@
       app.$.appContext.route = 'home';
     });
 
-    page('/users', function() {
-      app.$.appContext.route = 'users';
-    });
-
-    page('/users/:name', function(data) {
-      app.$.appContext.route = 'user-info';
-      app.$.appContext.params = data.params;
-    });
-
-    page('/contact', function() {
-      app.$.appContext.route = 'contact';
-    });
-
     // 404
     page('*', function() {
       page.redirect(app.$.appContext.baseUrl);
