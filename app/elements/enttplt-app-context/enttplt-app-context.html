@@ -17,7 +17,8 @@
         @apply(--layout-vertical);
       }
     </style>
-    <enttplt-app-globals on-auth-status-changed="_onAuthStatusChanged"></enttplt-app-globals>
+    <!--<enttplt-app-globals on-auth-status-changed="_onAuthStatusChanged"></enttplt-app-globals>-->
+    <enttplt-app-globals></enttplt-app-globals>
     <div id="appMainContainer">
       <enttplt-app-preloader id="appPreloader" class="app-preloader"></enttplt-app-preloader>
     </div>
@@ -40,7 +41,7 @@
           },
         },
 
-        _routeChanged: function (newValue) {
+        _routeChanged: function(newValue) {
           var appMainElement = this.querySelector('enttplt-app-main');
 
           if (appMainElement) {
@@ -53,8 +54,13 @@
           return this.$.appMainContainer;
         },
 
+        attached: function() {
+          var newContentElement = this._createAppMainElement();
+          this._switchContentTo(newContentElement);
+        },
+
         /* Private methods */
-        _disposeAllAppContents: function () {
+        _disposeAllAppContents: function() {
           this._disposePreloader();
           while (this.appMainContainerElement.hasChildNodes()) {
             this.appMainContainerElement.removeChild(this.appMainContainerElement.lastChild);
@@ -77,15 +83,15 @@
             baseUrl: this.baseUrl,
             route: this.route,
             params: this.params,
-            loggedUserProfile: window.appGlobals.userProfile,
+            loggedUserProfile: (window.appGlobals) ? window.appGlobals.userProfile : {},
           });
 
           var that = this;
-          appMain.addEventListener('route-changed', function (e) {
+          appMain.addEventListener('route-changed', function(e) {
             that.route = e.detail.value;
           });
 
-          appMain.addEventListener('params-changed', function (e) {
+          appMain.addEventListener('params-changed', function(e) {
             that.params = e.detail.value;
           });
 

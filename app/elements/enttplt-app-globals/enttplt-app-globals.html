@@ -63,7 +63,7 @@
         }
       },
 
-      _fireAuthStatusChanged: function () {
+      _fireAuthStatusChanged: function() {
         this.fire('auth-status-changed', {});
       },
 
@@ -76,7 +76,7 @@
       },
 
       created: function() {
-        window.appGlobals = this;
+        window.appGlobals = window.appGlobals || this;
       },
 
       ready: function() {
